@@ -1,9 +1,15 @@
+/**
+ * Vite config
+ *
+ * - React plugin: JSX and fast refresh during `pnpm dev`.
+ * - Tailwind v4 plugin: scans the source files for class names and generates only the CSS that is
+ *   actually used.
+ * The build output goes to dist/ (static files, ready for any static host such as Vercel).
+ */
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// Vite config: React plugin (JSX + fast refresh) and Tailwind v4 plugin
-// (scans source files for class names and generates only the CSS that is used).
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 })

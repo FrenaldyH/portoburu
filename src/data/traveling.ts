@@ -1,11 +1,20 @@
+/**
+ * Traveling data
+ *
+ * Places you traveled to, newest first. Same shape as hiking (Trip) without elevation.
+ *
+ * Add a trip: create src/assets/photos/traveling/<folder>/ with 1.jpeg, 2.jpeg, ..., run
+ * `pnpm photos`, then add an entry with `photos: album('traveling/<folder>', '<short description>')`.
+ *
+ * Notes
+ *   - The photo folder is named air_terjun_coban_talu, but the official name is Coban Talun
+ *     (Tulungrejo, Bumiaji, Batu, on the slopes of Mount Arjuno).
+ */
 import { album } from '../photos'
 import type { Trip } from '../types'
 
-// Places you traveled to. Add one block per trip (newest first).
-// Photos: create src/assets/photos/traveling/<folder>/ with 1.jpeg, 2.jpeg, ... then run `pnpm photos`.
 export const traveling: Trip[] = [
   {
-    // Official name is "Coban Talun": Tulungrejo, Bumiaji, Batu, on the slopes of Mount Arjuno.
     place: 'Coban Talun Waterfall',
     location: 'Batu, East Java',
     date: 'Jul 2026',

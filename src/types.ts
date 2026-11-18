@@ -1,63 +1,74 @@
-// Shapes of every data file in src/data.
-// Like a C header: if a data file has a wrong or missing field, `pnpm build` fails.
-// A `?` after a field name means the field is optional.
+/**
+ * Types
+ *
+ * The shape of every data file in src/data. Like a C header: if a data file has a wrong
+ * or missing field, `pnpm build` fails. A `?` after a field name means it is optional.
+ *
+ * Image       src, alt
+ *             src comes from album() in photos.ts; alt describes the photo for screen readers.
+ * Social      label, url
+ *             One contact pill, e.g. { label: 'GitHub', url: 'https://github.com/...' }.
+ * Profile     name, tagline, location, education, about, email, socials, skills, resumeUrl?
+ *             about holds one string per paragraph; resumeUrl is e.g. '/cv.pdf' after putting
+ *             cv.pdf in public/.
+ * Project     title, description, year, tech, repoUrl?, demoUrl?, videoUrl?, image?
+ *             description is 1-2 sentences: the problem it solves and what is notable.
+ * Trip        place, elevation?, location, date, photos, note?
+ *             elevation is the height in meters above sea level (mdpl), for hikes only.
+ * Experience  role, org, period, description?, highlights?, link?, photos?
+ *             One shape for organizations, committees, teaching, achievements, and
+ *             certifications; period is e.g. 'Aug 2024 – Present'; highlights are concrete
+ *             results, ideally with numbers.
+ */
 
-// An image in public/images. `alt` is required so screen readers can describe it.
 export type Image = {
-  src: string // path from public/, e.g. "/images/hiking/semeru.jpg"
-  alt: string // short description of what the image shows
+  src: string
+  alt: string
 }
 
-// A social or contact link.
 export type Social = {
-  label: string // e.g. "GitHub"
+  label: string
   url: string
 }
 
-// Who you are: left sticky header + About section.
 export type Profile = {
   name: string
-  tagline: string // one line under your name
+  tagline: string
   location: string
   education: string
-  about: string[] // one string per paragraph
+  about: string[]
   email: string
   socials: Social[]
   skills: string[]
-  resumeUrl?: string // e.g. "/cv.pdf" after putting cv.pdf in public/
+  resumeUrl?: string
 }
 
-// A software project.
 export type Project = {
   title: string
-  description: string // 1-2 sentences: the problem it solves and what is notable
+  description: string
   year: string
   tech: string[]
   repoUrl?: string
-  demoUrl?: string // live site
-  videoUrl?: string // demo video, e.g. YouTube (unlisted is fine)
+  demoUrl?: string
+  videoUrl?: string
   image?: Image
 }
 
-// One trip: a hike (with elevation) or a travel destination (without).
-// Used by both hiking.ts and traveling.ts.
 export type Trip = {
   place: string
-  elevation?: number // summit height in meters above sea level (mdpl), hikes only
+  elevation?: number
   location: string
   date: string
-  photos: Image[] // use album('<folder>', '<description>') from src/photos.ts
+  photos: Image[]
   note?: string
 }
 
-// A role in an organization, a committee, or a teaching activity.
-// One shape for all three because each is "role + organization + period".
 export type Experience = {
   role: string
   org: string
-  period: string // e.g. "Aug 2024 – Present"
+  period: string
   description?: string
-  highlights?: string[] // concrete results, ideally with numbers
+  highlights?: string[]
   link?: string
-  photos?: Image[] // use album('<folder>', '<description>') from src/photos.ts
+  photos?: Image[]
 }

@@ -1,10 +1,24 @@
+/**
+ * SectionBody
+ *
+ * Renders the items of one section with the layout its `kind` asks for:
+ *   project     -> numbered Rows: year on the right, tech stack as tags, links to Code / Live / Video
+ *   experience  -> numbered Rows: role as title, organization under it, period on the right; an
+ *                  optional link is labeled with its domain, e.g. "icpc.global ↗"
+ *   trip        -> a grid of TripCards (two columns on phones, three on wider screens)
+ *
+ * The explicit JSX.Element return type makes TypeScript report an error if a new `kind` is added
+ * to Section in sections.ts without a matching case here.
+ *
+ * Exports: SectionBody({ section })
+ * Uses: Row, TripCard
+ */
 import type { JSX } from 'react'
 import type { Section } from '../sections'
 import type { Experience, Project } from '../types'
 import { Row, type Link, type RowProps } from './Row'
 import { TripCard } from './TripCard'
 
-// Project -> Row: year on the right, tech stack as tags, links to code / live demo / video.
 function fromProject(project: Project): Omit<RowProps, 'index'> {
   const links: Link[] = []
   if (project.repoUrl) links.push({ label: 'Code', url: project.repoUrl })
@@ -21,8 +35,6 @@ function fromProject(project: Project): Omit<RowProps, 'index'> {
   }
 }
 
-// Experience -> Row: role as title, organization under it, period on the right.
-// An optional link is labeled with its domain, e.g. "icpc.global ↗".
 function fromExperience(item: Experience): Omit<RowProps, 'index'> {
   const links: Link[] = []
   if (item.link) {
@@ -41,9 +53,6 @@ function fromExperience(item: Experience): Omit<RowProps, 'index'> {
   }
 }
 
-// Renders one section's items with the layout its `kind` asks for.
-// The explicit return type makes TypeScript report an error if a new `kind`
-// is added to Section in src/sections.ts without a matching case here.
 export function SectionBody({ section }: { section: Section }): JSX.Element {
   switch (section.kind) {
     case 'project':

@@ -1,18 +1,31 @@
+/**
+ * Photos
+ *
+ * Finds every photo under src/assets/photos at build time (Vite's import.meta.glob) and turns
+ * one folder into a list of images for the data files.
+ *
+ * Exports
+ *   album(folder, alt): Image[]
+ *     All photos in src/assets/photos/<folder>/, ordered by file name with numeric sorting
+ *     (1, 2, ..., 10). Each alt text is `alt` plus "(photo N of M)" for screen readers.
+ *     Adding a photo to an existing activity = dropping a file into its folder; no code change.
+ *
+ * Notes
+ *   - Photo URLs get a content hash (e.g. /assets/1-a3f9c2.jpeg), so browsers can cache them
+ *     forever and still load a replaced photo.
+ *   - Accepted extensions: jpg, jpeg, png, webp, in lower or upper case.
+ *   - Run `pnpm photos` after adding photos: it shrinks large ones and strips GPS metadata.
+ *   - ponytail: a wrong folder name throws when the page loads (blank page plus a console error
+ *     in `pnpm dev`), not during `pnpm build`. Add a build-time check if a typo ever reaches
+ *     production.
+ */
 import type { Image } from './types'
 
-// Every photo under src/assets/photos, found by Vite at build time.
-// Key: file path like "./assets/photos/hiking/mt_penanggungan/1.jpeg"
-// Value: final URL with a content hash (e.g. /assets/1-a3f9c2.jpeg), so browsers can cache it forever.
-const files = import.meta.glob<string>(
-  './assets/photos/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
-  { eager: true, import: 'default' },
-)
+const files = import.meta.glob<string>('./assets/photos/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
+  eager: true,
+  import: 'default',
+})
 
-// Returns all photos inside one folder of src/assets/photos, ordered by file name
-// with numeric sorting (1, 2, ..., 10). Adding a photo = dropping a file into the folder.
-// `alt` describes the activity; each photo gets "(photo N of M)" appended for screen readers.
-// ponytail: a wrong folder name throws when the page loads (blank page + console error in `pnpm dev`),
-// not during `pnpm build`; add a build-time test if a typo ever reaches production.
 export function album(folder: string, alt: string): Image[] {
   const prefix = `./assets/photos/${folder}/`
   const paths = Object.keys(files)

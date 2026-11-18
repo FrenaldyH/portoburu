@@ -1,8 +1,15 @@
+/**
+ * TripCard
+ *
+ * One hike or trip, laid out like an album card: a photo deck, then the place, the height in
+ * mdpl (hikes only) with the location, and the date. The card gets a subtle background on hover.
+ *
+ * Exports: TripCard({ trip })
+ * Uses: PhotoStack
+ */
 import type { Trip } from '../types'
-import { PhotoStack } from './Gallery'
+import { PhotoStack } from './PhotoStack'
 
-// One hike or trip, laid out like an album card: a photo deck,
-// then place, height, location, and date.
 export function TripCard({ trip }: { trip: Trip }) {
   const details = [trip.elevation && `${trip.elevation.toLocaleString('en-US')} mdpl`, trip.location]
     .filter(Boolean)

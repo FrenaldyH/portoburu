@@ -1,0 +1,20 @@
+<!--
+  Near dust layer: one 389x389 tile of tiny white dots, repeated behind the page.
+  Used by src/background.css on body::after (scrolls with the page).
+  Positions were generated with a fixed random seed; edit freely.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="389" height="389">
+  <g fill="white">
+    <circle cx="126" cy="59" r="0.86" opacity="0.44"/>
+    <circle cx="208" cy="142" r="0.62" opacity="0.65"/>
+    <circle cx="15" cy="169" r="0.63" opacity="0.45"/>
+    <circle cx="165" cy="322" r="0.65" opacity="0.51"/>
+    <circle cx="244" cy="369" r="0.83" opacity="0.60"/>
+    <circle cx="380" cy="18" r="0.94" opacity="0.54"/>
+    <circle cx="56" cy="46" r="0.72" opacity="0.81"/>
+    <circle cx="70" cy="226" r="0.86" opacity="0.59"/>
+    <circle cx="213" cy="24" r="0.62" opacity="0.50"/>
+    <circle cx="265" cy="166" r="0.73" opacity="0.69"/>
+    <circle cx="176" cy="117" r="0.92" opacity="0.75"/>
+  </g>
+</svg>

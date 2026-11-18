@@ -1,13 +1,32 @@
+/**
+ * Row
+ *
+ * One numbered line in a list, laid out like a music tracklist. Used by projects and every
+ * Experience section.
+ *   Without photos:  number | title, subtitle, details | date on the right
+ *   With photos:     number | title, subtitle, date, details | photo deck on the right
+ *                    (on phones the deck moves under the text)
+ * Details are optional and shown in this order: description, highlights (bulleted), tags, links.
+ * The whole row gets a subtle background on hover.
+ *
+ * Exports
+ *   Row(props)  the component
+ *   RowProps    index (shown as 01, 02, ...), title, subtitle?, meta (a period or a year),
+ *               description?, highlights?, tags?, links?, photos?
+ *   Link        { label, url } for the links under a row
+ * Uses: PhotoStack, classes.ts (tagClass)
+ */
 import type { Image } from '../types'
-import { PhotoStack } from './Gallery'
+import { tagClass } from './classes'
+import { PhotoStack } from './PhotoStack'
 
 export type Link = { label: string; url: string }
 
 export type RowProps = {
-  index: number // position in the list, shown as 01, 02, ...
+  index: number
   title: string
   subtitle?: string
-  meta: string // a period or a year
+  meta: string
   description?: string
   highlights?: string[]
   tags?: string[]
@@ -15,9 +34,6 @@ export type RowProps = {
   photos?: Image[]
 }
 
-// One numbered line in a list, laid out like a music tracklist.
-// Without photos: number | title and details | date on the right.
-// With photos:    number | title, date, details | photo deck on the right (under the text on phones).
 export function Row({ index, title, subtitle, meta, description, highlights, tags, links, photos }: RowProps) {
   const hasPhotos = photos !== undefined && photos.length > 0
 
@@ -34,7 +50,6 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
       <div className="min-w-0">
         <h4 className="text-sm font-medium text-fg">{title}</h4>
         {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
-        {/* Date under the title: always when photos take the right column, otherwise on phones only. */}
         <p className={`mt-1 font-mono text-xs text-subtle ${hasPhotos ? '' : 'sm:hidden'}`}>{meta}</p>
 
         {description && <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>}
@@ -55,7 +70,7 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
         {tags && tags.length > 0 && (
           <ul className="mt-3 flex flex-wrap gap-1.5">
             {tags.map((tag) => (
-              <li key={tag} className="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] text-muted">
+              <li key={tag} className={tagClass}>
                 {tag}
               </li>
             ))}
@@ -81,7 +96,6 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
       </div>
 
       {hasPhotos ? (
-        // Phones: below the text (column 2). Wider screens: right column, same row as the text.
         <div className="col-start-2 w-48 sm:col-start-3 sm:row-start-1 sm:-mt-4 sm:w-auto sm:pl-2">
           <PhotoStack photos={photos} frame="aspect-[4/3] w-full" />
         </div>

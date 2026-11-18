@@ -1,0 +1,69 @@
+/*
+ * Background effects
+ *
+ * Dust: tiny white dots in two layers behind all content.
+ *   - body::after, the near layer (assets/dust/near.svg), covers the whole page and scrolls with it.
+ *   - body::before, the far layer (assets/dust/far.svg), is fixed to the screen.
+ *   Scrolling moves one layer and not the other, which reads as depth (parallax) with no
+ *   JavaScript. The tiles have different sizes so the repeat is hard to spot. Visitors who asked
+ *   their OS for reduced motion get no parallax: the far layer scrolls too.
+ *   body gets position: relative so body::after can span the full page height.
+ *
+ * Spotlight: a faint white light centered on the mouse, drawn by the .spotlight element that
+ * components/Spotlight.tsx renders and keeps in sync with the mouse position.
+ *
+ * Tuning knobs (in :root)
+ *   --dust-near, --dust-far   0 hides a layer, 1 shows the dots at full brightness
+ *   --spot-strength           0.03 = barely there, 0.08 = clearly visible
+ *   --spot-x, --spot-y        mouse position written by Spotlight.tsx; start off-screen
+ *
+ * This file sits next to index.css (not in a subfolder) so the relative url() paths resolve the
+ * same way after Tailwind inlines it into index.css.
+ */
+:root {
+  --dust-near: 0.55;
+  --dust-far: 0.35;
+  --spot-strength: 0.05;
+  --spot-x: -1000px;
+  --spot-y: -1000px;
+}
+
+body {
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  pointer-events: none;
+}
+
+body::before {
+  background-image: url("./assets/dust/far.svg");
+  background-size: 607px 607px;
+  opacity: var(--dust-far);
+}
+
+body::after {
+  position: absolute;
+  background-image: url("./assets/dust/near.svg");
+  background-size: 389px 389px;
+  opacity: var(--dust-near);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    position: absolute;
+  }
+}
+
+.spotlight {
+  background: radial-gradient(
+    600px circle at var(--spot-x) var(--spot-y),
+    rgb(255 255 255 / var(--spot-strength)),
+    transparent 70%
+  );
+}
