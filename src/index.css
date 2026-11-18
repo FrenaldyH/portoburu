@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Design tokens: monochrome palette inspired by Vercel's Geist system.
+   Tailwind v4 turns each token into utilities, e.g. --color-muted -> text-muted, bg-muted, border-muted. */
+@theme {
+  --color-bg: #000000;      /* page background (pure black) */
+  --color-surface: #0a0a0a; /* hover row / card background */
+  --color-border: #1f1f1f;  /* 1px hairline borders */
+  --color-fg: #ededed;      /* primary text */
+  --color-muted: #a1a1a1;   /* secondary text */
+  --color-subtle: #6b6b6b;  /* metadata: years, indexes, tags */
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* Base page styles: black background, light text, Geist, dark native controls/scrollbars. */
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+  }
+}
