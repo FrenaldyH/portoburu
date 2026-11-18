@@ -26,7 +26,7 @@ export const committees: Experience[] = [
   },
   {
     role: 'Head of IT',
-    org: 'Ini Lho ITS! — Forda IM Kalbar',
+    org: 'Ini Lho ITS! (Forda IM Kalbar)',
     period: 'Oct 2024 – Feb 2025',
     // highlights: ['TODO (optional): what you built or ran as Head of IT'],
   },

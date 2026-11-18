@@ -1,4 +1,5 @@
 import { achievements } from './data/achievements'
+import { certifications } from './data/certifications'
 import { committees } from './data/committees'
 import { hiking } from './data/hiking'
 import { organizations } from './data/organizations'
@@ -23,7 +24,8 @@ export type Section =
 //   3. add one line below (a new `group` name creates a new menu item)
 export const sections: Section[] = [
   { group: 'Projects', title: 'Projects', kind: 'project', items: projects },
-  { group: 'Achievements', title: 'Achievements', kind: 'experience', items: achievements },
+  { group: 'Achievements', title: 'Competitions & Scholarships', kind: 'experience', items: achievements },
+  { group: 'Achievements', title: 'Certifications', kind: 'experience', items: certifications },
   { group: 'Experience', title: 'Teaching & Lab', kind: 'experience', items: teaching },
   { group: 'Experience', title: 'Organizations', kind: 'experience', items: organizations },
   { group: 'Experience', title: 'Committees', kind: 'experience', items: committees },
