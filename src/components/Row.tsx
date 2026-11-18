@@ -1,5 +1,5 @@
 import type { Image } from '../types'
-import { Gallery } from './Gallery'
+import { PhotoStack } from './Gallery'
 
 export type Link = { label: string; url: string }
 
@@ -7,7 +7,7 @@ export type RowProps = {
   index: number // position in the list, shown as 01, 02, ...
   title: string
   subtitle?: string
-  meta: string // right-aligned: a period or a year
+  meta: string // a period or a year
   description?: string
   highlights?: string[]
   tags?: string[]
@@ -15,11 +15,18 @@ export type RowProps = {
   photos?: Image[]
 }
 
-// One numbered line in a list, laid out like a music tracklist:
-// number | title and details | date on the right. Used by projects and every Experience section.
+// One numbered line in a list, laid out like a music tracklist.
+// Without photos: number | title and details | date on the right.
+// With photos:    number | title, date, details | photo deck on the right (under the text on phones).
 export function Row({ index, title, subtitle, meta, description, highlights, tags, links, photos }: RowProps) {
+  const hasPhotos = photos !== undefined && photos.length > 0
+
   return (
-    <li className="-mx-3 grid grid-cols-[1.75rem_1fr] gap-x-3 rounded-lg p-3 transition-colors hover:bg-surface motion-reduce:transition-none sm:grid-cols-[1.75rem_1fr_auto]">
+    <li
+      className={`-mx-3 grid grid-cols-[1.75rem_1fr] gap-x-3 rounded-lg p-3 transition-colors hover:bg-surface motion-reduce:transition-none ${
+        hasPhotos ? 'sm:grid-cols-[1.75rem_1fr_10.5rem]' : 'sm:grid-cols-[1.75rem_1fr_auto]'
+      }`}
+    >
       <span aria-hidden="true" className="pt-px font-mono text-xs text-subtle tabular-nums">
         {String(index).padStart(2, '0')}
       </span>
@@ -27,8 +34,8 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
       <div className="min-w-0">
         <h4 className="text-sm font-medium text-fg">{title}</h4>
         {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
-        {/* On phones the date sits under the title; on wider screens it moves to the right column. */}
-        <p className="mt-1 font-mono text-xs text-subtle sm:hidden">{meta}</p>
+        {/* Date under the title: always when photos take the right column, otherwise on phones only. */}
+        <p className={`mt-1 font-mono text-xs text-subtle ${hasPhotos ? '' : 'sm:hidden'}`}>{meta}</p>
 
         {description && <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>}
 
@@ -37,7 +44,7 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
             {highlights.map((highlight) => (
               <li key={highlight} className="flex gap-2">
                 <span aria-hidden="true" className="text-subtle">
-                  –
+                  •
                 </span>
                 <span>{highlight}</span>
               </li>
@@ -71,11 +78,16 @@ export function Row({ index, title, subtitle, meta, description, highlights, tag
             ))}
           </ul>
         )}
-
-        {photos && photos.length > 0 && <Gallery photos={photos} />}
       </div>
 
-      <span className="hidden pt-px text-right font-mono text-xs whitespace-nowrap text-subtle sm:block">{meta}</span>
+      {hasPhotos ? (
+        // Phones: below the text (column 2). Wider screens: right column, same row as the text.
+        <div className="col-start-2 w-48 sm:col-start-3 sm:row-start-1 sm:-mt-4 sm:w-auto sm:pl-2">
+          <PhotoStack photos={photos} frame="aspect-[4/3] w-full" />
+        </div>
+      ) : (
+        <span className="hidden pt-px text-right font-mono text-xs whitespace-nowrap text-subtle sm:block">{meta}</span>
+      )}
     </li>
   )
 }
