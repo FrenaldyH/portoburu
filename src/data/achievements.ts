@@ -1,3 +1,4 @@
+import { album } from '../photos'
 import type { Experience } from '../types'
 
 // Competitions, awards, and scholarships. Newest first.
@@ -25,5 +26,6 @@ export const achievements: Experience[] = [
     role: 'Asrama Mahasiswa Nusantara Undergraduate Scholarship',
     org: 'Beasiswa Pendidikan Indonesia (BPI)',
     period: '2024',
+    photos: album('AMN', 'Asrama Mahasiswa Nusantara scholarship community in Surabaya'),
   },
 ]

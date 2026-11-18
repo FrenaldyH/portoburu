@@ -1,3 +1,4 @@
+import { album } from '../photos'
 import type { Experience } from '../types'
 
 // Student associations (himpunan) and other organizations. Ongoing roles first.
@@ -7,7 +8,9 @@ export const organizations: Experience[] = [
     role: 'Staff, Research & Technology',
     org: 'Himpunan Mahasiswa Teknik Computer-Informatika (HMTC) ITS',
     period: 'Mar 2026 – Present',
-    // highlights: ['TODO (optional): a concrete result, e.g. "Ran 4 workshops for 120+ students"'],
+    // Bluecamp was an HMTC event, so it lives here instead of in committees.ts.
+    highlights: ['Chaired Bluecamp, a scientific workshop for 85 participants and 13 speakers.'],
+    photos: album('organization/hmtc', 'HMTC members group photo'),
   },
   {
     // Ongoing role, so listed as an organization. Move to committees.ts if 3C is a one-off event.

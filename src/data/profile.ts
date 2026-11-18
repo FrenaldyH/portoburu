@@ -21,6 +21,8 @@ export const profile: Profile = {
   socials: [
     { label: 'GitHub', url: 'https://github.com/FrenaldyH' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/frenaldyh/' },
+    { label: 'Codeforces', url: 'https://codeforces.com/profile/FrenH' },
+    { label: 'YouTube', url: 'https://www.youtube.com/@Frenaldyh' },
   ],
 
   // Plain list, no percentages or skill bars.
