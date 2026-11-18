@@ -22,4 +22,22 @@
   body {
     @apply bg-bg font-sans text-fg antialiased;
   }
+
+  /* Smooth jumps to #anchors, unless the visitor asked their OS for less motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Keep the page behind an open photo viewer from scrolling. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  /* Clear focus ring for keyboard users. */
+  :focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
 }
