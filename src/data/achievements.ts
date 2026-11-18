@@ -5,7 +5,8 @@
  * role = what you achieved, org = who ran it, period = when.
  *
  * Sources
- *   ICPC  your ICPC ID record (linked in the entry): three Indonesia National Contest seasons in a row
+ *   ICPC        your ICPC ID record (linked in the entry): three Indonesia National Contest seasons in a row
+ *   Codeforces  official API (user.info, user.rating), Nov 2026: Specialist since Jun 2025, max 1415
  *   BPI   LinkedIn, Honors & Awards; photos in src/assets/photos/AMN (Asrama Mahasiswa Nusantara)
  *
  * To add ICPC photos: put them in src/assets/photos/achievements/icpc_jakarta_2026/ (1.jpeg,
@@ -29,6 +30,13 @@ export const achievements: Experience[] = [
       '2024 Indonesia National Contest: 57th place (team FSD)',
     ],
     link: 'https://icpc.global/ICPCID/H2I2ANG1YSVS',
+  },
+  {
+    role: 'Specialist, max rating 1415',
+    org: 'Codeforces (handle FrenH)',
+    period: 'Jun 2025',
+    description: 'Reached the Specialist rank in June 2025; 67 rated contests, current rating 1410.',
+    link: 'https://codeforces.com/profile/FrenH',
   },
   {
     role: 'Asrama Mahasiswa Nusantara Undergraduate Scholarship',
