@@ -20,11 +20,6 @@ export const committees: Experience[] = [
     period: 'Aug 2025',
   },
   {
-    role: 'Staff of Operations',
-    org: 'WLPAR x GOM KMK 2025, KMK ITS St. Ignatius Loyola',
-    period: 'Aug 2025',
-  },
-  {
     role: 'Head of IT',
     org: 'Ini Lho ITS! (Forda IM Kalbar)',
     period: 'Oct 2024 – Feb 2025',

@@ -40,9 +40,4 @@ export const teaching: Experience[] = [
     org: 'Jago Teknik',
     period: 'Sep 2025 – Dec 2025',
   },
-  {
-    role: 'Volunteer Tutor, Programming Fundamentals Midterm Preparation',
-    org: 'HMTC ITS',
-    period: 'Oct 2025',
-  },
 ]
