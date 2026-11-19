@@ -8,7 +8,7 @@ How to change the content of the site and get it online. For how the code works,
 - [The edit loop](#the-edit-loop)
 - [Content rules](#content-rules)
 - [Recipes](#recipes): profile, projects, demo videos, experience and achievements, photos,
-  hikes and trips, new categories, resume, visual effects
+  hikes and trips, new categories, resume, link preview image, visual effects
 - [Deploy](#deploy): first deploy on Vercel, updates, rollbacks, build failures
 - [Troubleshooting](#troubleshooting)
 
@@ -177,6 +177,14 @@ change: see "Add a new layout" in [architecture.md](architecture.md#add-a-new-la
 A Resume pill appears after the Email pill. Files in `public/` are published as they are, so
 the file is reachable at `https://<your-site>/cv.pdf`. Re-export it whenever the CV changes.
 
+### Update the link preview image
+
+`public/og.png` is the picture shown when the site's link is shared. It contains the name,
+tagline, a short education line, and the social pills, so it goes out of date when those change
+in `profile.ts`. To regenerate it, follow the four steps at the top of
+`scripts/og-image.html`. If the tagline changed, also update the two `description` tags in
+`index.html`. Chat apps cache previews for days; LinkedIn Post Inspector forces a refresh.
+
 ### Tune the visual effects
 
 | What | Where | Knob |
@@ -224,12 +232,34 @@ Hobby plan.
 - **Undo a bad deploy:** in the Vercel dashboard, open **Deployments**, pick the last good one,
   and choose **Promote to Production**. This switches back instantly without a rebuild.
 
+Changes that only exist on your laptop are invisible to Vercel. It reacts to pushes: when you
+connect the repository, Vercel installs a GitHub App on it, and GitHub notifies Vercel (a
+webhook) every time commits arrive.
+
+### Changing settings later
+
+Everything chosen during the import can be changed afterwards in the project's **Settings**:
+
+| Section | What it holds |
+|---|---|
+| Build and Deployment | Framework preset, build, install, and output settings, root directory; each field has an Override switch |
+| Environment Variables | Values available during the build (this site needs none) |
+| Domains | The `*.vercel.app` address and any domain you own |
+| Git | The production branch, and an optional command that decides whether a push should be built at all |
+
+A settings change applies to the next deployment. To apply it right away without pushing, open
+**Deployments**, click the ⋯ menu on the latest one, and choose **Redeploy**.
+
 ### After the first deploy
 
 1. **Choose the address.** Settings → Domains lets you rename the `*.vercel.app` address or
    connect a domain you own.
-2. **Add link preview tags (Open Graph).** These need the final address, so they come after the
-   first deploy.
+2. **Finish the link preview.** The header comment of `index.html` lists the five tags that
+   need the site's full address (`og:url`, `og:image`, and the image's size and alt text). Add
+   each one to `<head>` as `<meta property="..." content="..." />` with the real address, then
+   commit and push. To see the card, paste the address into LinkedIn Post Inspector
+   (linkedin.com/post-inspector) or opengraph.xyz. Post Inspector also refreshes LinkedIn's
+   cached copy after you change the image.
 3. **Share the address:** LinkedIn (Contact info and Featured), the GitHub profile, and the CV
    header.
 

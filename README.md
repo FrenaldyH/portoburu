@@ -29,8 +29,8 @@ pnpm dev       # http://localhost:5173, updates on every save
 
 ```
 index.html              page shell: title, favicon, fonts
-public/                 copied as-is to the site root (favicon.svg)
-scripts/                optimize-photos.sh, run by `pnpm photos`
+public/                 copied as-is to the site root (favicon.svg, og.png link preview image)
+scripts/                optimize-photos.sh (`pnpm photos`), og-image.html (source of og.png)
 src/
   main.tsx              entry point: mounts <App />
   App.tsx               layout: sticky header on the left, content on the right
