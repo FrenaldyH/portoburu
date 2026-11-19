@@ -4,12 +4,35 @@
   Fonts: Geist and Geist Mono, Vercel's open-source typefaces, loaded from Google Fonts
   (no npm dependency); the preconnect lines make that request start earlier.
   Favicon: public/favicon.svg.
+  Link preview: `description` is the snippet under the title in search results; the og:* and
+  twitter:* tags build the card shown when the link is shared in chat and social apps. Those apps
+  read only this file and never run JavaScript, so the tags must live here, not in React. The
+  card image is public/og.png (source: scripts/og-image.html).
+  After the first deploy, add five more meta tags with the site's full address (written here as
+  property = content, not as tags, because this comment ships in the built page and simple
+  scrapers might read a tag-shaped example as real):
+    og:url           https://ADDRESS/
+    og:image         https://ADDRESS/og.png
+    og:image:width   1200
+    og:image:height  630
+    og:image:alt     Frenaldy Bestabba Hasugian, Informatics student at ITS
 -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frenaldy Bestabba Hasugian</title>
+    <meta
+      name="description"
+      content="Informatics student at ITS building backend systems, grounded in competitive programming. Projects, achievements, experience, and adventures."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Frenaldy Bestabba Hasugian" />
+    <meta
+      property="og:description"
+      content="Informatics student at ITS building backend systems, grounded in competitive programming. Projects, achievements, experience, and adventures."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
