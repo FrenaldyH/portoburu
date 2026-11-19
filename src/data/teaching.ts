@@ -6,6 +6,9 @@
  * photos (album folders under src/assets/photos).
  *
  * Notes
+ *   - Laboratory Administrator highlights come from your message (Nov 2026). Add numbers when known
+ *     (team size, Timor-Leste training topic and participants). The OSN instructor role also came
+ *     through the lab. Photos of these activities go in assets/photos/admin_lab_algoritma_dan_pemrograman.
  *   - The OSN organizer was read from the event banner (East Java province logos); confirm the
  *     exact organizing agency if needed.
  *
@@ -19,6 +22,11 @@ export const teaching: Experience[] = [
     role: 'Laboratory Administrator',
     org: 'Algorithms and Programming Laboratory, ITS',
     period: 'May 2026 – Present',
+    highlights: [
+      'Coordinated the teaching assistants for Programming Fundamentals class E in 2026',
+      'Prepared a training program for a university in Timor-Leste',
+      'Carried out community service activities with the laboratory',
+    ],
     photos: album('admin_lab_algoritma_dan_pemrograman', 'Session at the Algorithms and Programming Laboratory'),
   },
   {

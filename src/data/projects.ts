@@ -6,9 +6,12 @@
  * and optional repoUrl, demoUrl, videoUrl, image. Links appear under the row as Code / Live / Video.
  *
  * Sources
- *   Real Estate E-Commerce  the repo (internal/service/knowledge.go, routes/router.go, README contributors)
- *   CertSend                your LinkedIn post (Aug 2026); add the number of certificates sent if known
- *   Buddy                   your LinkedIn post (Jul 2026)
+ *   Real Estate E-Commerce  the repo (internal/service/knowledge.go, routes/router.go); you built the backend
+ *                           and database, teammate Dimas Setiaji (github.com/setiAjiid) built the frontend
+ *                           and deployment. No demoUrl: the Railway backend returned 404 in Nov 2026.
+ *   CertSend                your LinkedIn post (Aug 2026); around 50 certificates sent (your message, Nov 2026)
+ *   Buddy                   your LinkedIn post (Jul 2026); May – Jun 2026, made for a friend's Product Design
+ *                           final project (your message, Nov 2026)
  *   Minesweeper             your LinkedIn post (May 2026)
  *   Unfollow Tracker        the repo README
  *   `year` comes from each repo's last commit date; correct it if needed.
@@ -25,7 +28,7 @@ export const projects: Project[] = [
   {
     title: 'Real Estate E-Commerce',
     description:
-      'Property marketplace REST API built by a two-person team, with a layered handler-service-repository architecture and JWT auth. Its RAG chatbot embeds user questions with Gemini and searches listings, FAQs, and business info stored as vectors in pgvector before generating an answer.',
+      'Property marketplace built by a two-person team: I designed the database and built the REST API with a layered handler-service-repository architecture and JWT auth, while my teammate built the frontend and deployment. Its RAG chatbot embeds user questions with Gemini and searches listings, FAQs, and business info stored as vectors in pgvector before generating an answer.',
     year: '2026',
     tech: ['Go', 'Gin', 'GORM', 'PostgreSQL', 'pgvector', 'Gemini API', 'Docker'],
     repoUrl: 'https://github.com/FrenaldyH/real-estate-ecommerce',
@@ -33,7 +36,7 @@ export const projects: Project[] = [
   {
     title: 'CertSend',
     description:
-      'Desktop app I built as a student association staff member to email participation certificates to dozens of seminar attendees. It matches each certificate PDF to a name in a CSV roster, shows a review step before sending, and throttles delivery to stay under email provider limits; packaged as a .deb installer for Ubuntu.',
+      'Desktop app I built as a student association staff member to email participation certificates to around 50 seminar attendees. It matches each certificate PDF to a name in a CSV roster, shows a review step before sending, and throttles delivery to stay under email provider limits; packaged as a .deb installer for Ubuntu.',
     year: '2026',
     tech: ['Go', 'Wails', 'React', 'TypeScript'],
     repoUrl: 'https://github.com/FrenaldyH/CertSend',
@@ -41,7 +44,7 @@ export const projects: Project[] = [
   {
     title: 'Buddy',
     description:
-      'Prototype platform connecting pet owners with walkers, sitters, and trainers, built in a three-person IoT team where I owned the web app. Includes provider search with an interactive map, a full booking flow with real-time pricing, and a Supabase backend secured with Row Level Security; the working prototype was finished in 2 days.',
+      'Prototype platform connecting pet owners with walkers, sitters, and trainers, built by a three-person team for the IoT final project of a Product Design student, where I owned the web app. Includes provider search with an interactive map, a full booking flow with real-time pricing, and a Supabase backend secured with Row Level Security; the working prototype was finished in 2 days.',
     year: '2026',
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Deno', 'Hono', 'PostgreSQL'],
     repoUrl: 'https://github.com/FrenaldyH/buddy-app',
